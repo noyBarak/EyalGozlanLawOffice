@@ -1,19 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useLocale } from '@/lib/locale-context';
+import { localeNames, type Locale } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
 
 export function Header() {
   const { locale, setLocale, t, dir } = useLocale();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const langMenuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === '/';
+
+  const locales: Locale[] = ['he', 'en', 'fr'];
 
   const navItems = [
     { label: t.nav.home, href: '#home', type: 'anchor' },
@@ -25,6 +30,17 @@ export function Header() {
     { label: t.nav.contact, href: '#contact', type: 'anchor' },
   ];
 
+  // Close language menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
+        setIsLangMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const handleNavClick = (href: string, type: string) => {
     setIsMenuOpen(false);
     if (type === 'anchor') {
@@ -34,7 +50,6 @@ export function Header() {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       } else {
-        // Navigate to home page with the hash
         router.push('/' + href);
       }
     }
@@ -51,8 +66,9 @@ export function Header() {
     }
   };
 
-  const toggleLanguage = () => {
-    setLocale(locale === 'he' ? 'en' : 'he');
+  const handleLanguageChange = (newLocale: Locale) => {
+    setLocale(newLocale);
+    setIsLangMenuOpen(false);
   };
 
   return (
@@ -99,26 +115,64 @@ export function Header() {
               )
             ))}
             
-            {/* Language Toggle */}
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-md hover:bg-muted"
-              aria-label="Toggle language"
-            >
-              <Globe className="size-4" />
-              <span>{locale === 'he' ? 'EN' : 'עב'}</span>
-            </button>
+            {/* Language Menu */}
+            <div className="relative" ref={langMenuRef}>
+              <button
+                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-md hover:bg-muted"
+                aria-label="Select language"
+              >
+                <Globe className="size-4" />
+                <span>{localeNames[locale]}</span>
+                <ChevronDown className={cn("size-3 transition-transform", isLangMenuOpen && "rotate-180")} />
+              </button>
+              {isLangMenuOpen && (
+                <div className="absolute top-full mt-1 right-0 bg-card border border-border rounded-md shadow-lg py-1 min-w-[120px] z-50">
+                  {locales.map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => handleLanguageChange(l)}
+                      className={cn(
+                        "w-full px-4 py-2 text-sm text-left hover:bg-muted transition-colors",
+                        locale === l && "text-primary font-medium"
+                      )}
+                    >
+                      {localeNames[l]}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 lg:hidden">
-            <button
-              onClick={toggleLanguage}
-              className="p-2 text-foreground/80 hover:text-primary transition-colors"
-              aria-label="Toggle language"
-            >
-              <Globe className="size-5" />
-            </button>
+            <div className="relative" ref={langMenuRef}>
+              <button
+                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                className="p-2 text-foreground/80 hover:text-primary transition-colors flex items-center gap-1"
+                aria-label="Select language"
+              >
+                <Globe className="size-5" />
+                <span className="text-xs">{locale.toUpperCase()}</span>
+              </button>
+              {isLangMenuOpen && (
+                <div className="absolute top-full mt-1 right-0 bg-card border border-border rounded-md shadow-lg py-1 min-w-[100px] z-50">
+                  {locales.map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => handleLanguageChange(l)}
+                      className={cn(
+                        "w-full px-3 py-2 text-sm text-left hover:bg-muted transition-colors",
+                        locale === l && "text-primary font-medium"
+                      )}
+                    >
+                      {localeNames[l]}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2 text-foreground/80 hover:text-primary transition-colors"
