@@ -26,8 +26,9 @@ export function PracticeAreas() {
 
         {/* Practice Area Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {t.practiceAreas.areas.map((area, index) => {
-            const Icon = icons[index];
+          {[...t.practiceAreas.areas].reverse().map((area, index) => {
+            const reversedIcons = [...icons].reverse();
+            const Icon = reversedIcons[index];
             return (
               <Card 
                 key={index} 
