@@ -1,4 +1,10 @@
-export type Locale = 'he' | 'en';
+export type Locale = 'he' | 'en' | 'fr';
+
+export const localeNames: Record<Locale, string> = {
+  he: 'עברית',
+  en: 'English',
+  fr: 'Français',
+};
 
 export const translations = {
   he: {
@@ -257,6 +263,135 @@ export const translations = {
     // Accessibility
     accessibility: {
       title: 'Accessibility Statement',
+    },
+  },
+  fr: {
+    // Navigation
+    nav: {
+      home: 'Accueil',
+      practiceAreas: 'Domaines',
+      about: 'À propos',
+      testimonials: 'Témoignages',
+      blog: 'Blog',
+      accessibility: 'Accessibilité',
+      contact: 'Contact',
+    },
+    // CTA
+    cta: {
+      consultation: 'Planifier une consultation gratuite',
+    },
+    // Hero
+    hero: {
+      title: 'Gozlan Law Office',
+      subtitle: 'Eyal Gozlan - Cabinet d\'avocats',
+    },
+    // Vision Section
+    vision: {
+      title: 'Notre Vision',
+      content: [
+        '"Eyal Gozlan - Cabinet d\'avocats" est un cabinet boutique basé à Jérusalem, spécialisé dans l\'immobilier, les successions et héritages, et le droit civil. Notre cabinet fournit un accompagnement juridique complet pour les transactions immobilières et la gestion d\'affaires juridiques complexes liées aux propriétés et aux droits immobiliers.',
+        'Ces dernières années, le cabinet a élargi ses activités pour inclure le soutien juridique et la gestion de projets dans des immeubles partagés, y compris des projets pour des groupes de locataires pour construire des abris, ajouter des balcons et effectuer des rénovations communes dans les immeubles. Dans ce cadre, nous accompagnons les représentants des locataires tout au long du projet.',
+        'Nous nous engageons à maintenir les plus hauts standards d\'intégrité, de rigueur, d\'équité, de dévouement et de courtoisie dans chaque aspect de notre travail. Notre mission est de fournir aux clients un soutien juridique adapté tout en maintenant le plus haut professionnalisme et détermination.',
+        'Chez "Eyal Gozlan - Cabinet d\'avocats", nous croyons en l\'accessibilité du monde juridique pour nos clients. Tout au long du processus, nous accompagnons les clients et nous assurons qu\'ils comprennent parfaitement leurs droits et obligations.',
+        'Le cabinet prône une haute disponibilité et accessibilité, tout en fournissant des réponses rapides et complètes aux besoins des clients. Toutes les affaires des clients sont traitées avec une discrétion totale et une rigueur professionnelle.',
+        'Ce qui distingue notre travail est la combinaison d\'une expertise large en immobilier avec un accompagnement personnel et proche de chaque client.',
+        'Nous comprenons que les questions juridiques peuvent être complexes et intimidantes. C\'est pourquoi nous nous assurons d\'expliquer les concepts juridiques de manière simple, claire et accessible.',
+      ],
+    },
+    // Practice Areas
+    practiceAreas: {
+      title: 'Domaines de Pratique',
+      areas: [
+        {
+          title: 'Appartements successoraux et ordonnances d\'héritage',
+          description: 'Gestion des appartements successoraux et des ordonnances d\'héritage avec une vaste expérience. Nous accompagnons les clients dans les aspects juridiques des appartements successoraux.',
+        },
+        {
+          title: 'Transactions immobilières résidentielles',
+          description: 'Représentation des acheteurs et vendeurs pour les appartements d\'occasion. Achat auprès de promoteurs avec conseils et vérifications. Contrats de location pour propriétaires et locataires.',
+        },
+        {
+          title: 'Accompagnement de projets d\'immeubles partagés',
+          description: 'Accompagnement juridique et administratif pour les projets partagés dans les immeubles résidentiels, tels que la construction d\'abris, l\'ajout de balcons et les rénovations importantes.',
+        },
+      ],
+    },
+    // About
+    about: {
+      title: 'À Propos',
+      name: 'Me Eyal Gozlan',
+      credentials: '(LL.B) Licence en Droit (B.A) Licence en Communication - Centre Académique de Management',
+      quote: 'Une négociation réussie ne vient pas du fait d\'avoir de bonnes cartes, mais de savoir comment les jouer.',
+    },
+    // Contact
+    contact: {
+      title: 'Contactez-nous',
+      officeName: 'Eyal Gozlan - Cabinet d\'avocats',
+      address: '"Beit HaNatziv", Route de Hébron 101, Jérusalem',
+      email: 'Eyal@gozlanadv.co.il',
+      phone: '02-6337021',
+      mobile: '050-3233496',
+      form: {
+        firstName: 'Prénom',
+        lastName: 'Nom',
+        email: 'Adresse e-mail',
+        phone: 'Numéro de téléphone',
+        message: 'Écrivez-moi - comment puis-je vous aider ?',
+        submit: 'Envoyer',
+        success: 'Merci pour votre demande !',
+      },
+    },
+    // Blog
+    blog: {
+      title: 'Blog',
+      readTime: 'Temps de lecture',
+      minutes: 'minutes',
+      posts: [
+        {
+          title: 'Ajouter des balcons à un immeuble partagé - Guide pour les résidents',
+          excerpt: 'Ces dernières années, de plus en plus d\'immeubles en Israël envisagent l\'option d\'ajouter des balcons aux appartements existants.',
+          date: '16 mars',
+          readTime: 2,
+        },
+        {
+          title: 'S\'organiser | Procuration continue et immobilier',
+          excerpt: 'Récemment, de nombreux clients m\'ont contacté pour préparer une procuration continue, et des questions liées à l\'immobilier surgissent...',
+          date: '4 jan. 2023',
+          readTime: 2,
+        },
+        {
+          title: 'Erreurs coûteuses dans les transactions immobilières',
+          excerpt: 'Vous avez décidé d\'acheter un appartement ? Vous avez décidé de vendre la maison ? Je rencontre des erreurs commises avant et pendant la transaction.',
+          date: '16 jan. 2022',
+          readTime: 2,
+        },
+        {
+          title: 'Podcast "Temps de réfléchir" | Ravit Gofman et Eyal Gozlan',
+          excerpt: 'Dans le monde juridique, il n\'y a généralement pas de place pour l\'innovation ou des changements fondamentaux.',
+          date: '11 oct. 2021',
+          readTime: 1,
+        },
+        {
+          title: 'Évaluation préliminaire',
+          excerpt: 'Qu\'est-ce qu\'une évaluation préliminaire et pourquoi est-elle importante ? La banque vous demandera d\'effectuer une évaluation pour déterminer la valeur de l\'appartement.',
+          date: '5 août 2021',
+          readTime: 1,
+        },
+      ],
+    },
+    // Footer
+    footer: {
+      rating: 'Note 10 sur Midrug',
+      copyright: '© 2023 Gozlan Eyal ADV. - Cabinet d\'avocats Eyal Gozlan',
+    },
+    // Testimonials
+    testimonials: {
+      title: 'Témoignages',
+      subtitle: 'Ce que disent nos clients',
+    },
+    // Accessibility
+    accessibility: {
+      title: 'Déclaration d\'accessibilité',
     },
   },
 } as const;
