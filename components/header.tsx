@@ -13,7 +13,8 @@ export function Header() {
   const { locale, setLocale, t, dir } = useLocale();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
-  const langMenuRef = useRef<HTMLDivElement>(null);
+  const desktopLangMenuRef = useRef<HTMLDivElement>(null);
+  const mobileLangMenuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === '/';
@@ -33,7 +34,10 @@ export function Header() {
   // Close language menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      const isOutsideDesktop = desktopLangMenuRef.current && !desktopLangMenuRef.current.contains(target);
+      const isOutsideMobile = mobileLangMenuRef.current && !mobileLangMenuRef.current.contains(target);
+      if (isOutsideDesktop && isOutsideMobile) {
         setIsLangMenuOpen(false);
       }
     };
@@ -116,7 +120,7 @@ export function Header() {
             ))}
             
             {/* Language Menu */}
-            <div className="relative" ref={langMenuRef}>
+            <div className="relative" ref={desktopLangMenuRef}>
               <button
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                 className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-md hover:bg-muted"
@@ -147,7 +151,7 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 lg:hidden">
-            <div className="relative" ref={langMenuRef}>
+            <div className="relative" ref={mobileLangMenuRef}>
               <button
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                 className="p-2 text-foreground/80 hover:text-primary transition-colors flex items-center gap-1"

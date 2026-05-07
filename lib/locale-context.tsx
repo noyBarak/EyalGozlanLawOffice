@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
 import { type Locale, getTranslations } from './i18n';
 
 type LocaleContextType = {
@@ -21,6 +21,13 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   
   const t = getTranslations(locale);
   const dir = locale === 'he' ? 'rtl' : 'ltr';
+
+  // Update document direction and language when locale changes
+  useEffect(() => {
+    document.documentElement.dir = dir;
+    document.documentElement.lang = locale;
+    console.log('[v0] Locale changed to:', locale, 'dir:', dir);
+  }, [locale, dir]);
   
   return (
     <LocaleContext.Provider value={{ locale, setLocale, t, dir }}>
