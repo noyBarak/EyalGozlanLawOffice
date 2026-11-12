@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useLocale } from '@/lib/locale-context';
@@ -83,18 +82,17 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <button 
+          <button
             onClick={handleLogoClick}
-            className="flex items-center gap-3 cursor-pointer"
+            className="flex cursor-pointer items-center"
+            aria-label="אייל גוזלן - משרד עורכי דין"
           >
-            <Image
-              src="/images/logo.png"
-              alt="אייל גוזלן - משרד עורכי דין"
-              width={180}
-              height={60}
-              className="h-12 w-auto mix-blend-multiply md:h-14"
-              priority
-            />
+            <span className="relative block h-[54px] w-[54px]" aria-hidden="true">
+              <span className="absolute left-[20px] top-[4px] size-[14px] rotate-45 border-2 border-[#c8dff7]" />
+              <span className="absolute left-[5px] top-[20px] size-[14px] rotate-45 border-2 border-[#81c6ec]" />
+              <span className="absolute left-[35px] top-[20px] size-[14px] rotate-45 border-2 border-[#112549]" />
+              <span className="absolute left-[20px] top-[36px] size-[14px] rotate-45 border-2 border-[#188cc4]" />
+            </span>
           </button>
 
           {/* Desktop Navigation */}
