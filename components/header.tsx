@@ -92,7 +92,7 @@ export function Header() {
               alt="אייל גוזלן - משרד עורכי דין"
               width={180}
               height={60}
-              className="h-12 w-auto md:h-14"
+              className="h-12 w-auto mix-blend-multiply md:h-14"
               priority
             />
           </button>
