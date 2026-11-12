@@ -44,19 +44,11 @@ export function Hero() {
 
           {/* Main Title */}
           <h1 className="sr-only">{t.hero.title}</h1>
-          <div className="mx-auto mb-4 h-[108px] w-[108px]" aria-hidden="true">
-            <div className="relative h-full w-full">
-              <span className="absolute left-[40px] top-[8px] size-[28px] rotate-45 border-[3px] border-[#c8dff7]" />
-              <span className="absolute left-[10px] top-[40px] size-[28px] rotate-45 border-[3px] border-[#81c6ec]" />
-              <span className="absolute left-[70px] top-[40px] size-[28px] rotate-45 border-[3px] border-[#dcecff]" />
-              <span className="absolute left-[40px] top-[72px] size-[28px] rotate-45 border-[3px] border-[#188cc4]" />
-            </div>
-          </div>
-          
-          {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-white/90 font-medium drop-shadow-md">
-            {t.hero.subtitle}
-          </p>
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D7%A2%D7%99%D7%A6%D7%95%D7%91%20%D7%9C%D7%9C%D7%90%20%D7%A9%D7%9D-5-pHeRNiHEWVNH3OhJ0GjUbNtGkgWLYT.png"
+            alt="Gozlan Law Office"
+            className="mx-auto mb-4 h-auto w-[220px] md:w-[280px]"
+          />
 
           {/* Decorative Line */}
           <div className="mt-8 flex items-center justify-center gap-4">
