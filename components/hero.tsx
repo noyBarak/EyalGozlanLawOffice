@@ -43,9 +43,15 @@ export function Hero() {
           </Button>
 
           {/* Main Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight drop-shadow-lg">
-            {t.hero.title}
-          </h1>
+          <h1 className="sr-only">{t.hero.title}</h1>
+          <div className="mx-auto mb-4 h-[108px] w-[108px]" aria-hidden="true">
+            <div className="relative h-full w-full">
+              <span className="absolute left-[40px] top-[8px] size-[28px] rotate-45 border-[3px] border-[#c8dff7]" />
+              <span className="absolute left-[10px] top-[40px] size-[28px] rotate-45 border-[3px] border-[#81c6ec]" />
+              <span className="absolute left-[70px] top-[40px] size-[28px] rotate-45 border-[3px] border-[#dcecff]" />
+              <span className="absolute left-[40px] top-[72px] size-[28px] rotate-45 border-[3px] border-[#188cc4]" />
+            </div>
+          </div>
           
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-white/90 font-medium drop-shadow-md">
